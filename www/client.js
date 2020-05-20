@@ -1,4 +1,4 @@
-const socket = io("http://" + window.location.hostname + ":2565");
+const socket = io("http://" + window.location.hostname + ":80");
 const input = document.getElementById("chatbutton");
 const text = document.getElementById("chattext");
 const name = prompt("What is your Nickname?");

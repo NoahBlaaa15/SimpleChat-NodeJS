@@ -1,4 +1,3 @@
-const io = require("socket.io")(2565);
 const express = require("express");
 const app = express();
 
@@ -12,7 +11,8 @@ app.get("/client.js", function(req, res) {
     res.sendFile(__dirname + '/www/client.js')
 })
 
-app.listen(80)
+const server = app.listen(process.env.PORT || 80);
+const io = require("socket.io")(server);
 
 io.on("connection", socket => {
     socket.on("send-chat-message", message => {
