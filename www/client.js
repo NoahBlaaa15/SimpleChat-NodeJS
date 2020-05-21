@@ -3,6 +3,8 @@ const input = document.getElementById("chatbutton");
 const text = document.getElementById("chattext");
 const name = prompt("What is your Nickname?");
 
+const d = new Date();
+
 socket.emit('login', name);
 
 socket.on("chat-message", message => {
@@ -33,10 +35,11 @@ function addlocalChat(message){
         "                            <div class=\"bg-primary rounded py-2 px-3 mb-2\">\n" +
         "                                <p class=\"text-small mb-0 text-white\">" + message + "</p>\n" +
         "                            </div>\n" +
+        "                            <p class=\"small text-muted\">" + d.getHours() + ":" + d.getMinutes() + " | " + d.getDate() + "." + (d.getMonth() + 1) + "</p>" +
         "                        </div>\n" +
         "                    </div>";
     $('#chatbox').append(text);
-};
+}
 
 function addChat(name, message){
     const text = "<div class=\"media w-50 mb-3\">\n" +
@@ -45,7 +48,8 @@ function addChat(name, message){
         "                            <div class=\"media-body ml-3\">\n" +
         "                                <p class=\"text-small mb-0 text-muted\">" + message + "</p>\n" +
         "                            </div>\n" +
+        "                            <p class=\"small text-muted\">" + d.getHours() + ":" + d.getMinutes() + " | " + (d.getMonth() + 1) + " " + d.getDate() + "</p>" +
         "                        </div>\n" +
         "                    </div>";
     $('#chatbox').append(text);
-};
+}
