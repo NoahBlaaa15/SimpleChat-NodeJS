@@ -19,6 +19,13 @@ socket.on('logout', message => {
     addChat("Disconnect", `<b>${message}</b> has left!`)
 })
 
+socket.on('users', message => {
+    $('#users').empty();
+    message.forEach(user => {
+    $('#users').append(`<p>${user}</p>`);
+    })
+})
+
 input.addEventListener('click', event => {
   event.preventDefault();
   if(text.value != "") {
@@ -48,7 +55,7 @@ function addChat(name, message){
         "                            <div class=\"media-body ml-3\">\n" +
         "                                <p class=\"text-small mb-0 text-muted\">" + message + "</p>\n" +
         "                            </div>\n" +
-        "                            <p class=\"small text-muted\">" + d.getHours() + ":" + d.getMinutes() + " | " + (d.getMonth() + 1) + " " + d.getDate() + "</p>" +
+        "                            <p class=\"small text-muted\">" + d.getHours() + ":" + d.getMinutes() + " | " + d.getDate() + "." + (d.getMonth() + 1) + "</p>" +
         "                        </div>\n" +
         "                    </div>";
     $('#chatbox').append(text);

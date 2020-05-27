@@ -21,9 +21,19 @@ io.on("connection", socket => {
     socket.on("login", message => {
         names[socket.id] = message;
         socket.broadcast.emit("login", message);
+
+        const values = Object.keys(names).map(function (key) {
+            return names[key];
+        });
+        io.local.emit("users", values);
     })
     socket.on("disconnect", () => {
         socket.broadcast.emit("logout", names[socket.id]);
         delete names[socket.id];
+
+        const values = Object.keys(names).map(function (key) {
+            return names[key];
+        });
+        io.local.emit("users", values);
     })
 });
